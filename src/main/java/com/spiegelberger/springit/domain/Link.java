@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Link {
+public class Link extends Auditable{
 
 	@Id
 	@GeneratedValue

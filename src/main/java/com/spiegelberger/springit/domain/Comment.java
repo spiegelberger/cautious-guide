@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Comment {
+public class Comment extends Auditable{
 	
 	@Id
 	@GeneratedValue
