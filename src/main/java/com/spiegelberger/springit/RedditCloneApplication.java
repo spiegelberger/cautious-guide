@@ -19,15 +19,20 @@ public class RedditCloneApplication {
 		SpringApplication.run(RedditCloneApplication.class, args);
 	}
 	
-	@Bean
-	CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository) {
-		return args -> {
-			Link link =new Link("Getting started with Spring Boot2", "https://therealdanvega.com/spring-boot-2");			      
-			      Comment comment = new Comment("I like that!!!");
-			      linkRepository.save(link);
-			      commentRepository.save(comment);
-			      link.addComment(comment);
-		};
-	}
+	
+	/*
+	 * This is also a possibility to initialize database:
+	 */
+	
+//	@Bean
+//	CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository) {
+//		return args -> {
+//			Link link =new Link("Getting started with Spring Boot2", "https://therealdanvega.com/spring-boot-2");			      
+//			      Comment comment = new Comment("I like that!!!");
+//			      linkRepository.save(link);
+//			      commentRepository.save(comment);
+//			      link.addComment(comment);
+//		};
+//	}
 
 }
