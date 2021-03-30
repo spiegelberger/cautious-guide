@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
-import org.hibernate.validator.constraints.URL;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import com.spiegelberger.springit.service.BeanUtil;
@@ -40,7 +39,6 @@ public class Link extends Auditable {
 
 	@NonNull
 	@NotEmpty(message="please enter a url")
-	@URL(message="please enter a valid url")
 	private String url;
 
 	@OneToMany(mappedBy = "link")
