@@ -1,9 +1,8 @@
 package com.spiegelberger.springit.domain;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Column;
@@ -21,11 +20,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 @RequiredArgsConstructor
 public class User implements UserDetails {
 
@@ -52,8 +53,16 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-	private Collection<Role>roles = new HashSet<>();
+	private Set<Role>roles = new HashSet<>();
 
+	public void addRole(Role role) {
+		roles.add(role);
+	}
+	
+	public void addRoles(Set<Role>newRoles) {
+		newRoles.forEach(this::addRole);
+	}
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
