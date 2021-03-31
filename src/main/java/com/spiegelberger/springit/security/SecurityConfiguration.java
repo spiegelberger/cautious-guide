@@ -35,7 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         	.loginPage("/login").permitAll()
         	.usernameParameter("email")
         .and()
-        .logout();
+        .logout()
+        .and()
+        .rememberMe();
 		//These lines needed for H2 console:
 //        .and()
 //        	.csrf().disable()
