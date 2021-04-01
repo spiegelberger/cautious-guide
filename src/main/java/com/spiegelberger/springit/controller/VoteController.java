@@ -24,12 +24,12 @@ public class VoteController {
     }
     
     
-    @GetMapping("/vote/link/{linkId}/direction/{direction}/votecount/{voteCount}")
-    public int vote(@PathVariable Long linkId, 
+    @GetMapping("/vote/link/{linkID}/direction/{direction}/votecount/{voteCount}")
+    public int vote(@PathVariable Long linkID, 
     				@PathVariable short direction, 
     				@PathVariable int voteCount) {
     	
-    	Optional<Link>optionalLink = linkRepository.findById(linkId);
+    	Optional<Link>optionalLink = linkRepository.findById(linkID);
     	if(optionalLink.isPresent()) {
     		Link link = optionalLink.get();
     		Vote vote = new Vote(direction, link);

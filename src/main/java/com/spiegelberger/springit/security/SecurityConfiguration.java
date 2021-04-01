@@ -37,11 +37,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         .and()
         .logout()
         .and()
-        .rememberMe();
+        .rememberMe()
 		//These lines needed for H2 console:
-//        .and()
-//        	.csrf().disable()
-//        	.headers().frameOptions().disable();
+        .and()
+        	.csrf().disable()
+        	.headers().frameOptions().disable();
 		
 	}
 	
