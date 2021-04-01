@@ -2,6 +2,7 @@ package com.spiegelberger.springit.controller;
 
 import java.util.Optional;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class VoteController {
     }
     
     
+    @Secured({"ROLE_USER"})
     @GetMapping("/vote/link/{linkID}/direction/{direction}/votecount/{voteCount}")
     public int vote(@PathVariable Long linkID, 
     				@PathVariable short direction, 
