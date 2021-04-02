@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spiegelberger.springit.domain.Comment;
 import com.spiegelberger.springit.domain.Link;
-import com.spiegelberger.springit.repository.CommentRepository;
+import com.spiegelberger.springit.service.CommentService;
 import com.spiegelberger.springit.service.LinkService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,17 +26,15 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class LinkController {
 	
-//	private static final Logger logger = LoggerFactory.getLogger(LinkController.class);
-	
 	
 	private LinkService linkService;
-	private CommentRepository commentRepository;
+	private CommentService commentService;
 	
 	
 	@Autowired
-	public LinkController(LinkService linkService, CommentRepository commentRepository) {
+	public LinkController(LinkService linkService, CommentService commentService) {
 		this.linkService = linkService;
-		this.commentRepository = commentRepository;
+		this.commentService = commentService;
 	}
 
 
@@ -100,7 +98,7 @@ public class LinkController {
 	    } 
 	    else {
 	        log.info("New Comment was saved successfully!");
-	        commentRepository.save(comment);
+	        commentService.save(comment);
 	    }
 	    return "redirect:/link/" + comment.getLink().getId();
 	}

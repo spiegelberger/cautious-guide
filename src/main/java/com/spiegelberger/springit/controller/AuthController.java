@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.spiegelberger.springit.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 @Controller
 public class AuthController {
 
