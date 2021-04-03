@@ -2,11 +2,11 @@ package com.spiegelberger.springit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.spiegelberger.springit.domain.User;
 import com.spiegelberger.springit.service.UserService;
-
-import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
@@ -30,7 +30,10 @@ public class AuthController {
 	}
 
 	@GetMapping("/register")
-	public String register() {
+	public String register(Model model) {
+		model.addAttribute("user", new User());
+		model.addAttribute("success", false);
+		
 	    return "auth/register";
 	}
 	
