@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
@@ -33,6 +34,9 @@ public class RedditCloneApplication {
 		return new SpringSecurityDialect();
 	}
 	
-
+	@Bean
+	public BCryptPasswordEncoder getEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 }
