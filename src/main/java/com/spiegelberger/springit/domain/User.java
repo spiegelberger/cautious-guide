@@ -21,6 +21,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.spiegelberger.springit.domain.validator.PasswordsMatch;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,10 +30,12 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@PasswordsMatch
 public class User implements UserDetails {
 
 	@Id
@@ -75,6 +79,11 @@ public class User implements UserDetails {
 	@NotEmpty(message="You must enter alias")
 	@Column(nullable=false, unique = true)
 	private String alias;
+	
+	@Transient
+	@NotEmpty(message = "Please enter Password Conformation")
+	private String confirmPassword;
+	
 	
 	public String getFullName() {
 		return firstName + " " + lastName;

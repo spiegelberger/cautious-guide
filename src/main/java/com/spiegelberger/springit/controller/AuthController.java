@@ -28,13 +28,12 @@ public class AuthController {
 	}
 
 	@GetMapping("/login")
-	public String login() {
-		
+	public String login() {		
 		return "auth/login";
 	}
 	
 	@GetMapping("/profile")
-	public String profile() {
+	public String profile() {		
 	    return "auth/profile";
 	}
 
