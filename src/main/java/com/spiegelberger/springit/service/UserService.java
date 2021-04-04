@@ -1,5 +1,7 @@
 package com.spiegelberger.springit.service;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,13 +18,15 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder encoder;
 	private final RoleService roleService;
+	private final MailService mailService;
 
 	@Autowired
 	public UserService(UserRepository userRepository, BCryptPasswordEncoder encoder, 
-													RoleService roleService) {
+						RoleService roleService, MailService mailService) {
 		this.userRepository = userRepository;
 		this.encoder =  encoder;
 		this.roleService  = roleService;
+		this.mailService = mailService;
 	}
 	
 	public User register(User user) {
@@ -38,6 +42,7 @@ public class UserService {
 		user.addRole(roleService.findByName("ROLE_USER"));
 		
 		//set an activation code
+		user.setActivationCode(UUID.randomUUID().toString());
 		
 		//disable user
 		
@@ -56,6 +61,12 @@ public class UserService {
 	}
 	
 	public void sendActivationEmail(User user) {
-		//added later
+		mailService.sendActivationEmail(user);
 	}
+	
+	public void sendWelcomeEmail(User user) {
+	    mailService.sendWelcomeEmail(user);
+	}
+	
+	
 }
