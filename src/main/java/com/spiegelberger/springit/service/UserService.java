@@ -1,5 +1,6 @@
 package com.spiegelberger.springit.service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,8 @@ public class UserService {
 	    mailService.sendWelcomeEmail(user);
 	}
 	
+	public Optional<User>findByEmailAndActivationCode(String email, String activationCode){
+		return userRepository.findByEmailAndActivationCode(email, activationCode);
+	}
 	
 }
