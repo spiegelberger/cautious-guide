@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -25,17 +26,21 @@ public class DatabaseLoader implements CommandLineRunner{
     private CommentRepository commentRepository;
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    private  BCryptPasswordEncoder encoder;
 
     private Map<String, User>users = new HashMap<>();
     
+    @Autowired
     public DatabaseLoader(LinkRepository linkRepository, 
     						CommentRepository commentRepository,
     						UserRepository userRepository,
-    						RoleRepository roleRepository) {
+    						RoleRepository roleRepository,
+    						BCryptPasswordEncoder encoder) {
         this.linkRepository = linkRepository;
         this.commentRepository = commentRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.encoder = encoder;
     }
 
     @Override
@@ -58,17 +63,18 @@ public class DatabaseLoader implements CommandLineRunner{
         links.put("File download example using Spring REST Controller","https://www.jeejava.com/file-download-example-using-spring-rest-controller/");
 
         links.forEach((k,v) -> {
-        	 User u1 = users.get("user@gmail.com");
-             User u2 = users.get("super@gmail.com");
-             Link link = new Link(k,v);
-             if(k.startsWith("Build")) {
-                 link.setUser(u1);
-             } else {
-                 link.setUser(u2);
-             }
+            User u1 = users.get("user@gmail.com");
+            User u2 = users.get("super@gmail.com");
+            Link link = new Link(k,v);
+            if(k.startsWith("Build")) {
+                link.setUser(u1);
+            } else {
+                link.setUser(u2);
+            }
 
-             linkRepository.save(link);
-            
+            linkRepository.save(link);
+
+            // we will do something with comments later
             Comment spring = new Comment("Thank you for this link related to Spring Boot. I love it, great post!",link);
             Comment security = new Comment("I love that you're talking about Spring Security",link);
             Comment pwa = new Comment("What is this Progressive Web App thing all about? PWAs sound really cool.",link);
@@ -84,8 +90,8 @@ public class DatabaseLoader implements CommandLineRunner{
     }
 
     private void addUsersAndRoles() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String secret = "{bcrypt}" + encoder.encode("password");
+       
+        String secret =/* "{bcrypt}" + */encoder.encode("password");
 
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
@@ -98,10 +104,9 @@ public class DatabaseLoader implements CommandLineRunner{
         userRepository.save(user);
         users.put("user@gmail.com",user);
 
-        User admin = new User("admin@gmail.com",secret,true,"Joe","Admin","masteradmin");
-        admin.setAlias("joeadmin");
-        admin.setConfirmPassword(secret);
+        User admin = new User("admin@gmail.com",secret,true,"Joe","Admin","joeadmin");
         admin.addRole(adminRole);
+        admin.setConfirmPassword(secret);
         userRepository.save(admin);
         users.put("admin@gmail.com",admin);
 

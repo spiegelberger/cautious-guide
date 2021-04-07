@@ -35,7 +35,7 @@ public class RedditCloneApplication {
 	}
 	
 	@Bean
-	public BCryptPasswordEncoder getEncoder() {
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 

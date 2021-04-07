@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -29,6 +30,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @Entity
@@ -44,6 +46,7 @@ public class User implements UserDetails {
 	
 	@NonNull
 	@Size(min=8, max=30)
+	@Email
 	@Column(nullable = false, unique=true)
 	private String email;
 	
@@ -55,6 +58,7 @@ public class User implements UserDetails {
 	@Column(nullable=false)
 	private boolean enabled;
 	
+	@ToString.Exclude
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
