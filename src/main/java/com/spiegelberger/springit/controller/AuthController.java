@@ -22,14 +22,15 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class AuthController {
 
+	
 	private UserService userService;
 
 	@Autowired
-	public AuthController(UserService userService) {
-		
+	public AuthController(UserService userService) {		
 		this.userService = userService;
 	}
 
+	
 	@GetMapping("/login")
 	public String login() {		
 		return "auth/login";
@@ -84,10 +85,13 @@ public class AuthController {
 				User newUser = user.get();
 				newUser.setEnabled(true);
 				newUser.setConfirmPassword(newUser.getActivationCode());
+				
 				userService.save(newUser);
 				userService.sendWelcomeEmail(newUser);
+				
 				return "auth/activated";
 			}
+			
 			return "redirect:/";
 	}
 	

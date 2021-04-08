@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import com.spiegelberger.springit.domain.User;
 import com.spiegelberger.springit.repository.UserRepository;
 
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
+	
 	
 	private UserRepository userRepository;
 	

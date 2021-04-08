@@ -32,16 +32,17 @@ public class VoteController {
     				@PathVariable int voteCount) {
     	
     	Optional<Link>optionalLink = linkService.findById(linkID);
-    	if(optionalLink.isPresent()) {
-    		Link link = optionalLink.get();
-    		Vote vote = new Vote(direction, link);
-    		voteService.save(vote);
-    		
-    		int updatedVoteCount = voteCount + direction;
-    		link.setVoteCount(updatedVoteCount);
-    		linkService.save(link);
-    		return updatedVoteCount;
-    	}
+	    	if(optionalLink.isPresent()) {
+	    		Link link = optionalLink.get();
+	    		Vote vote = new Vote(direction, link);
+	    		voteService.save(vote);
+	    		
+	    		int updatedVoteCount = voteCount + direction;
+	    		link.setVoteCount(updatedVoteCount);
+	    		linkService.save(link);
+	    		
+	    		return updatedVoteCount;
+	    	}
     	return voteCount;
     }
 }

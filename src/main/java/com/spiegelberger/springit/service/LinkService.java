@@ -12,12 +12,14 @@ import com.spiegelberger.springit.repository.LinkRepository;
 @Service
 public class LinkService {
 
+	
 	private LinkRepository linkRepository;
 
 	@Autowired
 	public LinkService(LinkRepository linkRepository) {
 		this.linkRepository = linkRepository;
 	}
+	
 	
 	public List<Link>findAll(){
 		return linkRepository.findAll();

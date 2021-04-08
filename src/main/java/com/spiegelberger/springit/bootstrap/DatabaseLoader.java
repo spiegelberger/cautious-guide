@@ -19,6 +19,10 @@ import com.spiegelberger.springit.repository.LinkRepository;
 import com.spiegelberger.springit.repository.RoleRepository;
 import com.spiegelberger.springit.repository.UserRepository;
 
+
+/*
+ * Load some data right before application fires up. 
+ */
 @Component
 public class DatabaseLoader implements CommandLineRunner{
 

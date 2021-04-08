@@ -8,6 +8,7 @@ import com.spiegelberger.springit.repository.VoteRepository;
 @Service
 public class VoteService {
 
+	
 	private final VoteRepository voteRepository;
 
 	public VoteService(VoteRepository voteRepository) {

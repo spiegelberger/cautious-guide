@@ -8,6 +8,7 @@ import com.spiegelberger.springit.repository.CommentRepository;
 @Service
 public class CommentService {
 
+	
 	private final CommentRepository commentRepository;
 
 	public CommentService(CommentRepository commentRepository) {

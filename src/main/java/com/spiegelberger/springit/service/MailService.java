@@ -31,6 +31,7 @@ public class MailService {
 		this.templateEngine = templateEngine;		
 	}
 	
+	
 	@Async
     public void sendEmail(String to, String subject, String content, boolean isMultiPart, boolean isHtml) {
         log.debug("Sending Email");

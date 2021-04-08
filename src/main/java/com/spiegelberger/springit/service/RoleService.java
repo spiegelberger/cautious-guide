@@ -9,6 +9,7 @@ import com.spiegelberger.springit.repository.RoleRepository;
 @Service
 public class RoleService {
 
+	
 	private RoleRepository roleRepository;
 		
 	@Autowired

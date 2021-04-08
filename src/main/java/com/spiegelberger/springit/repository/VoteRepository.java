@@ -7,6 +7,6 @@ import com.spiegelberger.springit.domain.Vote;
 
 
 @Repository
-public interface VoteRepository extends JpaRepository<Vote, Long>{
+public interface VoteRepository extends JpaRepository<Vote, Long> {
 
 }

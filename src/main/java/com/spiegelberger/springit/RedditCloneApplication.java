@@ -14,8 +14,7 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 @SpringBootApplication
 @EnableTransactionManagement
 public class RedditCloneApplication {
-
-	private static final Logger logger = LoggerFactory.getLogger(RedditCloneApplication.class);
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RedditCloneApplication.class, args);

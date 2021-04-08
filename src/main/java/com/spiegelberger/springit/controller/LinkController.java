@@ -89,12 +89,16 @@ public class LinkController {
 			log.info("Validation Errors were found while submiting a new link");
 			link.setUser(user);
 			model.addAttribute("link", link);
+			
 			return "link/submit";
 		} else {
 			link.setUser(user);
 			linkService.save(link);
 			log.info("New Link Saved Successfully");
-			redirectAttributes.addAttribute("id", link.getId()).addFlashAttribute("success", true);
+			redirectAttributes
+				.addAttribute("id", link.getId())
+				.addFlashAttribute("success", true);
+			
 			return "redirect:/link/{id}";
 		}
 

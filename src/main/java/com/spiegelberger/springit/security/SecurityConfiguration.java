@@ -22,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		this.userDetailsService = userDetailsService;
 	}
 
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -40,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         .logout()
         .and()
         .rememberMe()
-		//These lines needed for H2 console:
+		//These lines are only needed for H2 console:
         .and()
         	.csrf().disable()
         	.headers().frameOptions().disable();

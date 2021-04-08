@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.spiegelberger.springit.domain.Comment;
 
+
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Long>{
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 
 }
